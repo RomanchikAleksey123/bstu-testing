@@ -40,7 +40,7 @@ public class UnitTests {
     @Test
     public  void getStockProductsResultTrue() {
         driver.get("https://shop.by");
-;
+
         WebElement promotionMenuOption = waitForElementLocatedBy(By.xpath("/html/body/div[2]/div/div[1]/div/div/div[2]/a[2]"));
         promotionMenuOption.click();
 
