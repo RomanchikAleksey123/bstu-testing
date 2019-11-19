@@ -11,6 +11,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class UnitTests {
 
     private  WebDriver driver;
@@ -18,11 +20,12 @@ public class UnitTests {
     @BeforeMethod(alwaysRun = true)
     public  void browserSetup(){
         driver = new ChromeDriver();
+        driver.get("https://shop.by");
     }
 
     @Test
     public  void sendingEmptyPhoneFieldResultNotAccepted() {
-        driver.get("https://shop.by");
+
         WebElement userProfileButton = waitForElementLocatedBy(By.xpath("//*[@id='Header__Authentication']/div/span"));
         userProfileButton.click();
 
@@ -34,23 +37,22 @@ public class UnitTests {
 
         WebElement messageErrorTitle = waitForElementLocatedBy(By.xpath("//*[@id='LRegisterForm-form']/div[1]/div"));
 
-        Assert.assertTrue(messageErrorTitle.getText().equals("Укажите номер телефона"),"Phone Number Text Box is empty!");
+        Assert.assertEquals(messageErrorTitle.getText(), "Укажите номер телефона", "Phone Number Text Box is empty!");
     }
 
     @Test
-    public  void getStockProductsResultTrue() {
-        driver.get("https://shop.by");
+    public  void getStockProductsPageResultTrue() {
 
-        WebElement promotionMenuOption = waitForElementLocatedBy(By.xpath("/html/body/div[2]/div/div[1]/div/div/div[2]/a[2]"));
+        WebElement promotionMenuOption = waitForElementLocatedBy(By.xpath("//*[@title='Товары со скидками']"));
         promotionMenuOption.click();
 
-        WebElement promotionTitle = waitForElementLocatedBy(By.xpath("/html/body/div[2]/div/div[2]/h1"));
+        WebElement promotionTitle = waitForElementLocatedBy(By.xpath("//div[2]/div/div[2]/h1"));
 
-        Assert.assertTrue(promotionTitle.getText().equals("Товары со скидками"),"Discount page is not available");
+        Assert.assertEquals(promotionTitle.getText(), "Товары со скидками", "Discount page is not available");
     }
 
     private WebElement waitForElementLocatedBy(By by) {
-        return (WebElement) new WebDriverWait(driver, 20)
+        return (WebElement) new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.elementToBeClickable(by));
     }
 
