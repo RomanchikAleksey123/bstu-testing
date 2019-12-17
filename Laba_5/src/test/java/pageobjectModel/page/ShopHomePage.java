@@ -11,7 +11,7 @@ public class ShopHomePage extends BasePage{
     @FindBy(xpath = "//*[@class='Header__FindTxtInput']")
     private WebElement searchInput;
 
-    @FindBy(xpath = "//*[@id='Header__Logo']/div[2]/div/div[3]/form/div/div/input")
+    @FindBy(xpath = "//*[@class='Header__SearchButLink glyphicon visible-md visible-lg']")
     private  WebElement searchButton;
 
     @FindBy(xpath = "//*[@class='Header__LoginLinkAuth Header__LinkShowWapper']")
@@ -34,9 +34,13 @@ public class ShopHomePage extends BasePage{
         return new SearchResultPage(driver);
     }
 
-    public ShopHomePage inputPhoneForRegistration(String phoneNumber){
+    public  ShopHomePage openUserRegistrationFrame(){
         profileButton.click();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        return this;
+    }
+
+    public ShopHomePage inputPhoneForRegistration(String phoneNumber){
         WebElement registrationButton = waitForElementLocatedBy(By.xpath("//*[@id='yt3']"));
         registrationButton.click();
         WebElement inputPhone = waitForElementLocatedBy(By.xpath("//*[@id='LRegisterForm_phone']"));
