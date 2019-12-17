@@ -1,7 +1,6 @@
 package frameworktest.test;
 
 import frameworktest.page.ShopHomePage;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

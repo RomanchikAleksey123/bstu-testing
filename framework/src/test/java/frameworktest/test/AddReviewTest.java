@@ -2,7 +2,6 @@ package frameworktest.test;
 
 import frameworktest.model.Review;
 import frameworktest.model.User;
-import frameworktest.page.ShopHomePage;
 import frameworktest.service.ReviewCreator;
 import frameworktest.service.UserCreator;
 import org.testng.Assert;

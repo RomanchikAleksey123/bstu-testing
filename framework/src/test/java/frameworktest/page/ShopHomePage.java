@@ -1,14 +1,17 @@
 package frameworktest.page;
 
-import com.sun.org.apache.xalan.internal.res.XSLTErrorResources;
 import frameworktest.model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ShopHomePage extends BasePage{
+
+    private final Logger logger = LogManager.getRootLogger();
 
     @FindBy(xpath = "//*[@class='Header__FindTxtInput']")
     private WebElement searchInput;
@@ -28,6 +31,7 @@ public class ShopHomePage extends BasePage{
     }
 
     public  ShopHomePage openPage(){
+        logger.info("Open home page!");
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return  this;
@@ -66,6 +70,7 @@ public class ShopHomePage extends BasePage{
     }
 
     public  ShopHomePage openUserRegistrationFrame(){
+        logger.info("Open user registration frame!");
         WebElement registrationButton = waitForElementLocatedBy(By.xpath("//*[@id='yt3']"));
         registrationButton.click();
         return this;
@@ -96,6 +101,7 @@ public class ShopHomePage extends BasePage{
     }
 
     public  SettingsPage openSettingsPage(){
+        logger.info("Open settings page!");
         WebElement profileButton = waitForElementLocatedBy(By.xpath("//*[@id='header-photo']/div"));
         profileButton.click();
         WebElement settingsButton = waitForElementLocatedBy(By.xpath("//*[@href='/management/settings/update/']"));
@@ -108,6 +114,7 @@ public class ShopHomePage extends BasePage{
     }
 
     public FaceBookPage openFaceBook(){
+        logger.info("Open facebook page frame!");
         WebElement faceBookLink = waitForElementLocatedBy(By.xpath("//*[@href='https://www.facebook.com/shopby/']"));
         faceBookLink.click();
         return new FaceBookPage(driver);

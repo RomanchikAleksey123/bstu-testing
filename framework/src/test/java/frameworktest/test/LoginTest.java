@@ -1,7 +1,6 @@
 package frameworktest.test;
 
 import frameworktest.model.User;
-import frameworktest.page.ShopHomePage;
 import frameworktest.service.UserCreator;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

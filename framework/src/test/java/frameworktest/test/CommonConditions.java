@@ -1,11 +1,13 @@
 package frameworktest.test;
 
+import frameworktest.driver.DriverSingleton;
+import frameworktest.util.TestListener;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import frameworktest.driver.*;
+import org.testng.annotations.Listeners;
 
+@Listeners({TestListener.class})
 public class CommonConditions {
     protected static WebDriver driver;
 
